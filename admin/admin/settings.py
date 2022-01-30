@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'admin',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'micro-db',
+        'HOST': 'micro-django-db',
         'CONN_MAX_AGE': 28000,
         'PORT': '3306',
     }

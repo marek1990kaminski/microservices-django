@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   backend:
-    container_name: micro-django
+    container_name: micro-django-be
     build:
       context: .
       dockerfile: Dockerfile
@@ -13,7 +13,7 @@ services:
       - db
 
   db:
-    container_name: micro-db
+    container_name: micro-django-db
     image: mariadb:10.7.1
     restart: always
     environment:
