@@ -1,12 +1,11 @@
-from typing import Optional
+import random
 
 from django.db.models import QuerySet
 from rest_framework import viewsets, status
-
-# Create your views here.
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from products.models import Product
+from products.models import Product, User
 from products.serializers import ProductSerializer
 
 
@@ -66,3 +65,12 @@ class ProductViewSet(viewsets.ViewSet):
                 data={'message': f'not found, error: {str(e)}'},
                 status=status.HTTP_404_NOT_FOUND
             )
+
+
+class UserAPIView(APIView):
+    def get(self, _):
+        users: QuerySet[User] = User.objects.all()
+        user = random.choice(users)
+        return Response({
+            'id': user.id
+        })
