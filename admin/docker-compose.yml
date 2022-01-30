@@ -14,7 +14,7 @@ services:
 
   db:
     container_name: micro-db
-    image: mysql:5.7.22
+    image: mariadb:10.7.1
     restart: always
     environment:
       MYSQL_DATABASE: admin
