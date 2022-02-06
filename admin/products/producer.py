@@ -1,5 +1,7 @@
+import json
+
 import pika
-from pika import URLParameters, BlockingConnection
+from pika import URLParameters, BlockingConnection, BasicProperties
 from pika.adapters.blocking_connection import BlockingChannel
 
 params: URLParameters = pika.URLParameters(
@@ -10,5 +12,6 @@ connection: BlockingConnection = pika.BlockingConnection(params)
 channel: BlockingChannel = connection.channel()
 
 
-def publish():
-    channel.basic_publish(exchange='', routing_key='main', body='hello main')
+def publish(method, body):
+    properties: BasicProperties = pika.BasicProperties(method)
+    channel.basic_publish(exchange='', routing_key='main', body=json.dumps(body), properties=properties)
