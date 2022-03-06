@@ -5,6 +5,7 @@ import os
 
 import pika
 from pika import URLParameters, BlockingConnection
+from pika.adapters.blocking_connection import BlockingChannel
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'admin.settings')
 django.setup()
@@ -17,7 +18,7 @@ params: URLParameters = pika.URLParameters(
 
 connection: BlockingConnection = pika.BlockingConnection(params)
 
-channel = connection.channel()
+channel: BlockingChannel = connection.channel()
 
 channel.queue_declare(queue=queue_name)
 
